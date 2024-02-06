@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Calculator {
 
     enum Cals {
         Probability,
         Survivor,
-        FailureRate
+        FailureRate,
+        MTTF
     }
 
     public static class Program {
@@ -34,6 +36,10 @@ namespace Calculator {
             return lambda;
         }
 
+        public static double MTTF(double lambda) {
+            return 1 / lambda;
+        }
+
         public static void print(Cals cal, double[] args) {
             double value = -1;
             string calString = "";
@@ -50,6 +56,9 @@ namespace Calculator {
                 value = FailureRate(args[0]);
                 calString = "FailureRate";
                 break;
+                case Cals.MTTF:
+                value = MTTF(args[0]);
+                break;
                 default:
                     throw new Exception();
             }
@@ -61,17 +70,35 @@ namespace Calculator {
     }
 
     public static class Gamma {
-        public static double Probability() {
-            throw new NotImplementedException();
+        const double e = Math.E;
+
+        private static int factorial(int x) {
+            int value = 0;
+            for (int i = x; i > 0; i--) {
+                value *= x;
+                x--;
+            }
+            return value;
         }
 
-        public static double Survivor() {
-            throw new NotImplementedException();
+        public static double Probability(double lambda, double gamma, double kelvin, double time) {
+            return (lambda) / (gamma * (kelvin)) * Math.Pow(lambda * time, (kelvin - 1)) * Math.Pow(e, -lambda * time);
+        }
+
+        public static double Survivor(double lambda, int kelvin, double time) {
+            double result = 0;
+            for (int x = 0; x < kelvin - 1; x++) {
+                result += (Math.Pow(lambda * time, x) / factorial(x))*Math.Pow(e, -lambda * time);
+            }
+
+            return result;
         }
 
         public static double FailureRate() {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Not possible using a function, do this manual");
         }
+
+
     }
 
     public static class Weibull {
