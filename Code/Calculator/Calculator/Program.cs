@@ -62,9 +62,7 @@ namespace Calculator {
                 default:
                     throw new Exception();
             }
-            string returnString = $"Function: {calString} returns {value} with the given values: (Lambda, Time) ";
-            string stringValue = String.Join(", ", args.Select(x => x.ToString()));
-            returnString += stringValue;
+            string returnString = $"Function: {calString} returns {value} with the given values: (Lambda, Time) { String.Join(", ", args.Select(x => x.ToString())) }";
             Console.WriteLine(returnString);
         }
     }
