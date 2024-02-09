@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-
-namespace Calculator {
+﻿namespace Calculator {
 
     enum Cals {
         Probability,
@@ -11,6 +7,15 @@ namespace Calculator {
         MTTF
     }
 
+    /**
+     * 
+     *  How to
+     *  
+     *  Simply create your variables, and insert them into the function, some are not able to be calculated by using this code which is due to the nature of calculation and are sumply easier and quicker to do in hand.
+     *  Create an instance of the type you would want to use and then choose the function. The enum Cals defines the function you would want to perform.
+     *  The print method is created to give data into the console in somewhat usefull format.
+     * 
+     */
     public static class Program {
         public static int Main(string[] args) {
             double function = 4.28 * Math.Pow(10, -4);
@@ -24,7 +29,7 @@ namespace Calculator {
 
     abstract class AbstractCalculator {
         public const double e = Math.E;
-        public int factorial(int x) {
+        public int Factorial(int x) {
             int value = 0;
             for(int i = x; i > 0; i--) {
                 value *= x;
@@ -108,7 +113,7 @@ namespace Calculator {
         public double Survivor(double lambda, int kelvin, double time) {
             double result = 0;
             for (int x = 0; x < kelvin - 1; x++) {
-                result += (Math.Pow(lambda * time, x) / factorial(x))*Math.Pow(e, -lambda * time);
+                result += (Math.Pow(lambda * time, x) / Factorial(x))*Math.Pow(e, -lambda * time);
             }
             return result;
         }
@@ -116,76 +121,74 @@ namespace Calculator {
         public double FailureRate() {
             throw new NotImplementedException("Not possible using a function, do this manual");
         }
-
-
     }
 
-    public static class Weibull {
-        public static double Probability(double alpha, double lambda, double time) {
+    class Weibull : AbstractCalculator {
+        public double Probability(double alpha, double lambda, double time) {
             throw new NotImplementedException();
         }
 
-        public static double Survivor() {
+        public double Survivor() {
             throw new NotImplementedException();
         }
 
-        public static double FailureRate() {
-            throw new NotImplementedException();
-        }
-    }
-
-    public static class LogNormal {
-        public static double Probability() {
-            throw new NotImplementedException();
-        }
-
-        public static double Survivor() {
-            throw new NotImplementedException();
-        }
-
-        public static double FailureRate() {
+        public double FailureRate() {
             throw new NotImplementedException();
         }
     }
 
-    public static class BirnbaumSaunders {
-        public static double Probability() {
+    class LogNormal : AbstractCalculator {
+        public double Probability() {
             throw new NotImplementedException();
         }
 
-        public static double Survivor() {
+        public double Survivor() {
             throw new NotImplementedException();
         }
 
-        public static double FailureRate() {
-            throw new NotImplementedException();
-        }
-    }
-
-    public static class GumbellSmallestExtreme {
-        public static double Probability() {
-            throw new NotImplementedException();
-        }
-
-        public static double Survivor() {
-            throw new NotImplementedException();
-        }
-
-        public static double FailureRate() {
+        public double FailureRate() {
             throw new NotImplementedException();
         }
     }
 
-    public static class InverseGaussian {
-        public static double Probability() {
+    class BirnbaumSaunders : AbstractCalculator {
+        public double Probability() {
             throw new NotImplementedException();
         }
 
-        public static double Survivor() {
+        public double Survivor() {
             throw new NotImplementedException();
         }
 
-        public static double FailureRate() {
+        public double FailureRate() {
+            throw new NotImplementedException();
+        }
+    }
+
+    class GumbellSmallestExtreme : AbstractCalculator {
+        public double Probability() {
+            throw new NotImplementedException();
+        }
+
+        public double Survivor() {
+            throw new NotImplementedException();
+        }
+
+        public double FailureRate() {
+            throw new NotImplementedException();
+        }
+    }
+
+    class InverseGaussian : AbstractCalculator {
+        public double Probability() {
+            throw new NotImplementedException();
+        }
+
+        public double Survivor() {
+            throw new NotImplementedException();
+        }
+
+        public double FailureRate() {
             throw new NotImplementedException();
         }
     }
