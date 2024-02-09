@@ -16,31 +16,63 @@ namespace Calculator {
             double function = 4.28 * Math.Pow(10, -4);
             double time = 720;
             double[] values = { function, time };
-            Exponential.print(Cals.Survivor, values);
+            Exponential exponential = new Exponential();
+            exponential.print(Cals.Survivor, values);
             return 0;
         }
     }
 
-    static class Exponential {
-        const double e = Math.E;
+    abstract class AbstractCalculator {
+        public const double e = Math.E;
+        public int factorial(int x) {
+            int value = 0;
+            for(int i = x; i > 0; i--) {
+                value *= x;
+                x--;
+            }
+            return value;
+        }
 
-        public static double Probability(double lambda, double time) {
+        public double Probability(double lambda, double time) {
+            throw new NotImplementedException();
+        }
+
+        public double Survivor(double lambda, double time) {
+            throw new NotImplementedException();
+        }
+
+        public double FailureRate(double lambda) {
+            throw new NotImplementedException();
+        }
+
+        public double MTTF(double lambda) {
+            throw new NotImplementedException();
+        }
+
+        public void print(Cals cal, double[] args) {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    class Exponential : AbstractCalculator {
+        public new double Probability(double lambda, double time) {
             return lambda * Math.Pow(e, -1 * lambda * time);
         }
 
-        public static double Survivor(double lambda, double time) {
+        public new double Survivor(double lambda, double time) {
             return Math.Pow(e, -lambda * time);
         }
 
-        public static double FailureRate(double lambda) {
+        public new double FailureRate(double lambda) {
             return lambda;
         }
 
-        public static double MTTF(double lambda) {
+        public new double MTTF(double lambda) {
             return 1 / lambda;
         }
 
-        public static void print(Cals cal, double[] args) {
+        public new void print(Cals cal, double[] args) {
             double value = -1;
             string calString = "";
             switch(cal) {
@@ -67,32 +99,21 @@ namespace Calculator {
         }
     }
 
-    public static class Gamma {
-        const double e = Math.E;
+    class Gamma : AbstractCalculator {
 
-        private static int factorial(int x) {
-            int value = 0;
-            for (int i = x; i > 0; i--) {
-                value *= x;
-                x--;
-            }
-            return value;
-        }
-
-        public static double Probability(double lambda, double gamma, double kelvin, double time) {
+        public double Probability(double lambda, double gamma, double kelvin, double time) {
             return (lambda) / (gamma * (kelvin)) * Math.Pow(lambda * time, (kelvin - 1)) * Math.Pow(e, -lambda * time);
         }
 
-        public static double Survivor(double lambda, int kelvin, double time) {
+        public double Survivor(double lambda, int kelvin, double time) {
             double result = 0;
             for (int x = 0; x < kelvin - 1; x++) {
                 result += (Math.Pow(lambda * time, x) / factorial(x))*Math.Pow(e, -lambda * time);
             }
-
             return result;
         }
 
-        public static double FailureRate() {
+        public double FailureRate() {
             throw new NotImplementedException("Not possible using a function, do this manual");
         }
 
