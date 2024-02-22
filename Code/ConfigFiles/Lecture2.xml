@@ -1,0 +1,48 @@
+<TopNode gate="OR">
+		<Employee_Resigns gate="OR">
+				<Retirement gate="OR">
+						<Opportunity gate="OR">
+								<Recruitment>
+									0.3
+								</Recruitment>
+								<Applied>
+									0.2
+								</Applied>
+						</Opportunity>
+						<Personal_Reasons gate="OR">
+								<Unsatisfied>
+									0.1
+								</Unsatisfied>
+								<Bad_Worl_Environment>
+									0.4
+								</Bad_Worl_Environment>
+								<Health_Reasons>
+									0.2
+								</Health_Reasons>
+						</Personal_Reasons>
+				</Retirement>
+		</Employee_Resigns>
+		<Employee_Laid_Off gate="OR">
+				<Unsatisfactory_Employee gate="OR">
+						<Bad_Work_Ethic gate="OR">
+								<Social>
+									0.1
+								</Social>
+								<Lazy>
+									0.3
+								</Lazy>
+						</Bad_Work_Ethic>
+						<Lack_Of_Ability>
+							0.2
+						</Lack_Of_Ability>
+				</Unsatisfactory_Employee>
+				<Cuts gate="OR">
+						<Department_Not_Needed>
+							0.1
+						</Department_Not_Needed>
+						<Budget_Cuts>
+							0.7
+						</Budget_Cuts>
+				</Cuts>
+		</Employee_Laid_Off>
+</TopNode>
