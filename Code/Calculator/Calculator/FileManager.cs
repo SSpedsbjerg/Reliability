@@ -7,6 +7,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Calculator {
     class FileManager {
@@ -17,42 +18,37 @@ namespace Calculator {
         }
 
         private Node GetNodes(XElement element) {
-            if(element.HasElements) {
-
-            }
-            IEnumerable<XElement> els = element.Elements();
+            List<Node> nodes = new List<Node>();
             Node node = new Node();
-            /*
-            XmlReader StreamReader = null;
-            node.Name = streamReader.Name;
-            if(streamReader.HasAttributes == false) {
-                throw new Exception($"MISSING DECLARTION OF GATE IN {streamReader.Name}!");
+            double value = 0.0;
+            if(element.HasElements) {
+                IEnumerable<XElement> els = element.Elements();
+                foreach(XElement el in els) {;
+                    node.AddChildNode(GetNodes(el).SetGateRelation(element.FirstAttribute.Value));
+                }
             }
             else {
-                if(streamReader.GetAttribute(0) == "OR") node.SetGateRelation(GateType.OR);
-                else if(streamReader.GetAttribute(0) == "AND") node.SetGateRelation(GateType.AND);
-                else throw new Exception($"MISSING DECLARTION OF GATE AFTER {streamReader.Name}!");
+                try {
+                    value = double.Parse(element.Value.Replace("\n", "").Replace("\t", ""), CultureInfo.InvariantCulture);
+                }
+                catch(Exception e) {
+                    Console.WriteLine(e.ToString());
+                }
+                node.SetValue(value);
             }
-            while(streamReader.Read()) {
-                if (streamReader.NodeType == XmlNodeType.Element) {
-                    node.AddChildNode(GetNodes(streamReader.ReadSubtree()));
-                }
-                else if( streamReader.NodeType == XmlNodeType.Text) {
-                    node.SetValue(double.Parse(streamReader.Value));
-                }
-            }*/
+            node.SetName(element.Name.LocalName);
+            Console.WriteLine(element.Name.LocalName);
             return node;
         }
 
         public FaultTree GetFaultTreeFromConfig() {
-            Node node = new Node();
+            Node node = new Node(); //TOPNODE
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
             XmlReader streamReader = XmlReader.Create(file, settings);
             streamReader.Read();
             switch(streamReader.NodeType) {
                 case XmlNodeType.Element:
-                Console.WriteLine("<" + streamReader.Name + ">");
                 node.Name = streamReader.Name;
                 if(streamReader.HasAttributes == false) {
                     throw new Exception("MISSING DECLARTION OF GATE IN TOPNODE!");
@@ -62,19 +58,15 @@ namespace Calculator {
                     else if(streamReader.GetAttribute(0) == "AND") node.SetGateRelation(GateType.AND);
                     else throw new Exception("MISSING DECLARTION OF GATE AFTER TOPNODE!");
                 }
-                XElement el = XElement.Load(streamReader);
-                IEnumerable<XElement> els = el.Elements();
-                //XmlReader innerReader = streamReader.ReadSubtree();
-                foreach (XElement element in els) {
+                XElement Xml = XElement.Load(streamReader);
+                IEnumerable<XElement> elements = Xml.Elements();
+                foreach (XElement element in elements) {
                     node.AddChildNode(GetNodes(element));
                 }
-                //node.AddChildNode(GetNodes(innerReader));
-                //return new FaultTree(node);
-                break;
+                return new FaultTree(node);
                 default:
                 throw new Exception("INVALID XML FILE, REQUIRE FIRST ELEMENT TO BE A NODE!");
             }
-            return null;
         }
     }
 

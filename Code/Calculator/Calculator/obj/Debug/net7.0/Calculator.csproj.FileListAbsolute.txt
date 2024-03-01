@@ -1,4 +1,3 @@
-C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.csproj.AssemblyReference.cache
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.AssemblyInfoInputs.cache
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.AssemblyInfo.cs
@@ -13,3 +12,4 @@ C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.pdb
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.genruntimeconfig.cache
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\ref\Calculator.dll
+C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.sourcelink.json

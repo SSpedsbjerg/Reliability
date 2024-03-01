@@ -3,10 +3,10 @@
 				<Retirement gate="OR">
 						<Opportunity gate="OR">
 								<Recruitment>
-									0.3
+									0.6
 								</Recruitment>
 								<Applied>
-									0.2
+									0.7
 								</Applied>
 						</Opportunity>
 						<Personal_Reasons gate="OR">
@@ -14,7 +14,7 @@
 									0.1
 								</Unsatisfied>
 								<Bad_Worl_Environment>
-									0.4
+									0.8
 								</Bad_Worl_Environment>
 								<Health_Reasons>
 									0.2
@@ -26,22 +26,22 @@
 				<Unsatisfactory_Employee gate="OR">
 						<Bad_Work_Ethic gate="OR">
 								<Social>
-									0.1
+									0.7
 								</Social>
 								<Lazy>
-									0.3
+									0.8
 								</Lazy>
 						</Bad_Work_Ethic>
 						<Lack_Of_Ability>
-							0.2
+							0.3
 						</Lack_Of_Ability>
 				</Unsatisfactory_Employee>
 				<Cuts gate="OR">
 						<Department_Not_Needed>
-							0.1
+							0.5
 						</Department_Not_Needed>
 						<Budget_Cuts>
-							0.7
+							0.9
 						</Budget_Cuts>
 				</Cuts>
 		</Employee_Laid_Off>

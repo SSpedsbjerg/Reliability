@@ -29,8 +29,9 @@ namespace Calculator {
         public static int Main(string[] args) {
 
             FileManager manager = new FileManager("C:/Users/simon/Documents/GitHub/Reliability/Code/ConfigFiles/Lecture2.xml");
-            manager.GetFaultTreeFromConfig();
-            FaultTree tree = new FaultTree();
+            FaultTree tree = manager.GetFaultTreeFromConfig();
+            Console.WriteLine($"Success: {tree.Update(tree.TopNode)}");
+            Console.WriteLine(tree.ToString());
 
             /*
             double function = 4.28 * Math.Pow(10, -4);
@@ -48,7 +49,7 @@ namespace Calculator {
     }
 
     class Node {
-        double value;
+        public double value = -1;
         public List<Node> ChildNodes = null;
         public List<Node> ParentNodes = null;
         public GateRelation GateRelation = null;
@@ -57,8 +58,14 @@ namespace Calculator {
             ChildNodes = new List<Node>();
             ParentNodes = new List<Node>();
         }
+        public Node(double value) {
+            ChildNodes = new List<Node>();
+            ParentNodes = new List<Node>();
+            this.value = value;
+        }
         
         public Node AddChildNode(Node node) {
+            node.ParentNodes.Add(this);
             ChildNodes.Add(node);
             return this;
         }
@@ -76,55 +83,52 @@ namespace Calculator {
             return false;
         }
 
-        public void SetValue(double value) {
+        public Node SetName(string Name) {
+            this.Name = Name;
+            return this;
+        }
+
+        public Node SetValue(double value) {
             this.value = value;
+            return this;
         }
 
-        public void addGateRelation(GateRelation gateRelation) {
+        public Node SetGateRelation(GateRelation gateRelation) {
             GateRelation = gateRelation;
+            return this;
         }
 
-        public void SetGateRelation(GateType type) {
+        public Node SetGateRelation(GateType type) {
             GateRelation = new GateRelation(this, type);
+            return this;
         }
 
-        public bool Update() {
-            GateRelation.AddChildNotes(ChildNodes);
-            Console.WriteLine(value);
-            return false;
+        public Node SetGateRelation(string type) {
+            if(type.Equals("OR")) {
+                GateRelation = new GateRelation(this, GateType.OR);
+                return this;
+            }
+            else if(type.Equals("AND")) {
+                GateRelation = new GateRelation(this, GateType.AND);
+                return this;
+            }
+            else
+                return this;
+            
+        }
+
+        public new string ToString() {
+            return $"{this.Name} : {this.value} | Parents : {this.ParentNodes.ToArray().ToString()}, Children : {this.ChildNodes.ToArray().ToString()}";
         }
     }
 
     class GateRelation {
         private GateType GateType;
-        double value = -1;
         Node parrentNode;
 
         public GateRelation(Node parrentNode, GateType gate) {
             this.parrentNode = parrentNode;
             this.GateType = gate;
-        }
-
-        public void AddChildNotes(List<Node> nodes) {
-            double value = 0;
-            if(GateType == GateType.OR) {
-                value = 1;
-
-                foreach (Node node in nodes) {
-                    if (node is ValueNode) {
-                        ValueNode v_node = (ValueNode)node;
-                        value *= (1 - v_node.GetValue());
-                    }
-                }
-                this.value = 1 - value;
-                Console.WriteLine(value);
-                parrentNode.SetValue(value);
-                return;
-            }
-
-            else if (GateType == GateType.AND) {
-
-            }
         }
 
         public void SetGateType(GateType gateType) {
@@ -134,24 +138,11 @@ namespace Calculator {
         public GateType GetGateType() {
             return this.GateType;
         }
-
-        public double GetValue() {
-            return value;
-        }
-
-        public bool Update() {
-            return false;
-        }
-
     }
 
     class ValueNode : Node {
-        double value;
-        public ValueNode SetValue(double value) {
+        public new ValueNode SetValue(double value) {
             this.value = value;
-            foreach (Node parent in ParentNodes) {
-                parent.Update();
-            }
             return this;
         }
 
@@ -162,11 +153,64 @@ namespace Calculator {
 
     class FaultTree {
         List<Node> nodes = null;
-        Node TopNode = null;
+        public Node TopNode = null;
+
+        private List<Node> GetAllChildNodes(Node parentNode) {
+            List<Node> result = new List<Node>();
+            if(parentNode.ChildNodes.Count != 0) {
+                foreach(Node childNode in parentNode.ChildNodes) {
+                    result.AddRange(GetAllChildNodes(childNode));
+                    result.Add(parentNode);
+                }
+            }
+            else if(parentNode.ChildNodes.Count == 0) {
+                result.Add(parentNode);
+            }
+            result = result.Distinct().ToList();
+            return result;
+        }
 
         public FaultTree(Node node) {
             TopNode = node;
+            nodes = GetAllChildNodes(TopNode);
         }
+
+        public bool Update(Node topNode) {
+            foreach(Node node in topNode.ChildNodes) {
+                if(node.value == -1) {
+                    Update(node);
+                }
+            }
+            topNode.value = 1;
+            foreach(Node node in topNode.ChildNodes) {
+                topNode.value *= (1 - node.value);
+            }
+            return true;
+            /*
+            try {
+                if(topNode.GateRelation.GetGateType() == GateType.OR) {
+                    topNode.value = 1;
+                    foreach(Node node in topNode.ChildNodes) {
+                        topNode.value *= (1 - node.value);
+                    }
+                    return true;
+                }
+                else if(topNode.GateRelation.GetGateType() == GateType.AND) {
+                    topNode.value = 0;
+                    Console.WriteLine("NOT IMPLEMENTED UPDATE AND GATE");
+                }
+            }
+            catch(Exception e) { //An error with some of the values which causes their gates to be null from the XML parser
+                topNode.value = 1;
+                foreach(Node node in topNode.ChildNodes) {
+                    topNode.value *= (1 - node.value);
+                }
+                return true;
+            }*/
+            return false;
+        }
+
+        /*
         public FaultTree() {
             nodes = new List<Node>();
             Node TopNode = new Node();
@@ -252,18 +296,24 @@ namespace Calculator {
 
             foreach (Node node in nodes) {
                 if(node.hasChild() && node.GateRelation is null) {
-                    node.addGateRelation(new GateRelation(node, GateType.OR));
+                    node.SetGateRelation(new GateRelation(node, GateType.OR));
                 }
             }
 
-            TopNode.Update();
+            //TopNode.Update();
 
 
         }
+        */
 
-
-
-
+        public override string ToString() {
+            this.Update(TopNode);
+            string returnString = "";
+            foreach (Node node in nodes) {
+                returnString += node.ToString() + "\n";
+            }
+            return returnString;
+        }
     }
 
 
