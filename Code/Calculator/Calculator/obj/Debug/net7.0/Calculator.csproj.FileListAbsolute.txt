@@ -12,4 +12,4 @@ C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.pdb
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.genruntimeconfig.cache
 C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\ref\Calculator.dll
-C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.sourcelink.json
+C:\Users\simon\Documents\GitHub\Reliability\Code\Calculator\Calculator\obj\Debug\net7.0\Calculator.csproj.AssemblyReference.cache

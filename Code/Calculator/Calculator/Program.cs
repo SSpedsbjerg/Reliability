@@ -181,10 +181,13 @@ namespace Calculator {
                     Update(node);
                 }
             }
+            //Gør det forkert, gør mere som 1 - (1-a)(1-b)(1-c)... instead of a *= 1-b
             topNode.value = 1;
+            double value = 1;
             foreach(Node node in topNode.ChildNodes) {
-                topNode.value *= (1 - node.value);
+                value *= (1 - node.value);
             }
+            topNode.value = 1 - value;
             return true;
             /*
             try {
@@ -396,7 +399,6 @@ namespace Calculator {
     }
 
     class Gamma : AbstractCalculator {
-
         public double Probability(double lambda, double gamma, double kelvin, double time) {
             return (lambda) / (gamma * (kelvin)) * Math.Pow(lambda * time, (kelvin - 1)) * Math.Pow(e, -lambda * time);
         }
