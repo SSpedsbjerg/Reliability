@@ -181,7 +181,6 @@ namespace Calculator {
                     Update(node);
                 }
             }
-            //Gør det forkert, gør mere som 1 - (1-a)(1-b)(1-c)... instead of a *= 1-b
             topNode.value = 1;
             double value = 1;
             foreach(Node node in topNode.ChildNodes) {
@@ -212,102 +211,6 @@ namespace Calculator {
             }*/
             return false;
         }
-
-        /*
-        public FaultTree() {
-            nodes = new List<Node>();
-            Node TopNode = new Node();
-                ValueNode Employee_Resigns = new ValueNode();
-                    ValueNode Retirement = new ValueNode();
-                        ValueNode Opportunity = new ValueNode();
-                            ValueNode Recruitment = new ValueNode();
-                            ValueNode Applied = new ValueNode();
-                        ValueNode Personal_reasons = new ValueNode();
-                            ValueNode Unsatisfied = new ValueNode();
-                            ValueNode Bad_Work_Environment = new ValueNode();
-                            ValueNode Health_Reasons = new ValueNode();
-                ValueNode Employee_Laid_Off = new ValueNode();
-                    ValueNode Unsaisfactory_Employee = new ValueNode();
-                        ValueNode Bad_Work_Ethic = new ValueNode();
-                            ValueNode Social = new ValueNode();
-                            ValueNode Lazy = new ValueNode();
-                        ValueNode Lack_Of_Ability = new ValueNode();
-                    ValueNode Cuts = new ValueNode();
-                        ValueNode Department_Not_Needed = new ValueNode();
-                        ValueNode Budget_Cuts = new ValueNode();
-
-            Cuts.AddChildNode(Department_Not_Needed);
-            Cuts.AddChildNode(Budget_Cuts);
-
-            Bad_Work_Ethic.AddChildNode(Social);
-            Bad_Work_Ethic.AddChildNode(Lazy);
-
-            Unsaisfactory_Employee.AddChildNode(Bad_Work_Ethic);
-            Unsaisfactory_Employee.AddChildNode(Lack_Of_Ability);
-
-            Employee_Laid_Off.AddChildNode(Cuts);
-            Employee_Laid_Off.AddChildNode(Unsaisfactory_Employee);
-
-            Personal_reasons.AddChildNode(Unsatisfied);
-            Personal_reasons.AddChildNode(Bad_Work_Environment);
-            Personal_reasons.AddChildNode(Health_Reasons);
-
-            Opportunity.AddChildNode(Recruitment);
-            Opportunity.AddChildNode(Applied);
-
-            Retirement.AddChildNode(Opportunity);
-            Retirement.AddChildNode(Personal_reasons);
-
-            Employee_Resigns.AddChildNode(Retirement);
-
-            TopNode.AddChildNode(Employee_Resigns);
-            TopNode.AddChildNode(Employee_Laid_Off);
-
-
-            nodes.AddRange(new List<Node> {
-                TopNode,
-                Employee_Resigns,
-                Retirement,
-                Opportunity,
-                Personal_reasons,
-                Employee_Laid_Off,
-                Unsaisfactory_Employee,
-                Bad_Work_Ethic,
-                Cuts,
-                Budget_Cuts,
-                Department_Not_Needed,
-                Lack_Of_Ability,
-                Lazy,
-                Social,
-                Health_Reasons,
-                Bad_Work_Environment,
-                Unsatisfied,
-                Applied,
-                Recruitment
-            });
-
-            Recruitment.SetValue(0.2);
-            Applied.SetValue(0.5);
-            Unsatisfied.SetValue(0.1);
-            Bad_Work_Environment.SetValue(0.2);
-            Health_Reasons.SetValue(0.3);
-            Social.SetValue(0.4);
-            Lazy.SetValue(0.7);
-            Lack_Of_Ability.SetValue(0.1);
-            Department_Not_Needed.SetValue(0.2);
-            Budget_Cuts.SetValue(0.3);
-
-            foreach (Node node in nodes) {
-                if(node.hasChild() && node.GateRelation is null) {
-                    node.SetGateRelation(new GateRelation(node, GateType.OR));
-                }
-            }
-
-            //TopNode.Update();
-
-
-        }
-        */
 
         public override string ToString() {
             this.Update(TopNode);
