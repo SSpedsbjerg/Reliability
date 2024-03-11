@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using MathNet.Numerics.LinearAlgebra.Factorization;
+using System.Runtime.CompilerServices;
 
 namespace Calculator {
 
@@ -27,18 +28,21 @@ namespace Calculator {
 
     public static class Program {
         public static int Main(string[] args) {
-
+            /*
             FileManager manager = new FileManager("C:/Users/simon/Documents/GitHub/Reliability/Code/ConfigFiles/Lecture2.xml");
             FaultTree tree = manager.GetFaultTreeFromConfig();
             Console.WriteLine($"Success: {tree.Update(tree.TopNode)}");
             Console.WriteLine(tree.ToString());
-
+            */
             /*
             double function = 4.28 * Math.Pow(10, -4);
             double time = 720;
             double[] values = { function, time };
             Exponential exponential = new Exponential();
             exponential.print(Cals.Survivor, values);*/
+
+            NormalDistrubtion normalDis = new NormalDistrubtion();
+            List<double> normalValues = normalDis.GenerateNormalDataset(691, 116.071744, 29.964951, 110.599998, 128.10, 132.89999, 5.4, 174.69);
             return 0;
         }
     }
