@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
+    "net7.0-windows7.0": {
       "MathNet.Numerics/5.0.0": {
         "type": "package",
         "compile": {
@@ -14,6 +14,38 @@
             "related": ".xml"
           }
         }
+      },
+      "OxyPlot.Core/2.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/OxyPlot.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/OxyPlot.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "OxyPlot.WindowsForms/2.1.2": {
+        "type": "package",
+        "dependencies": {
+          "OxyPlot.Core": "2.1.2"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/OxyPlot.WindowsForms.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OxyPlot.WindowsForms.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     }
   },
@@ -39,11 +71,51 @@
         "mathnet.numerics.5.0.0.nupkg.sha512",
         "mathnet.numerics.nuspec"
       ]
+    },
+    "OxyPlot.Core/2.1.2": {
+      "sha512": "/BuPL1Wa7ZhpKA2DBe72md+S8PgIHF+UP/NsKfO9BiheXnbns1/tqS7s2MWIR1xFy5i+PWVC67KziGPY48mNgA==",
+      "type": "package",
+      "path": "oxyplot.core/2.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "OxyPlot_128.png",
+        "lib/net40/OxyPlot.dll",
+        "lib/net40/OxyPlot.xml",
+        "lib/net45/OxyPlot.dll",
+        "lib/net45/OxyPlot.xml",
+        "lib/netstandard1.0/OxyPlot.dll",
+        "lib/netstandard1.0/OxyPlot.xml",
+        "lib/netstandard2.0/OxyPlot.dll",
+        "lib/netstandard2.0/OxyPlot.xml",
+        "oxyplot.core.2.1.2.nupkg.sha512",
+        "oxyplot.core.nuspec"
+      ]
+    },
+    "OxyPlot.WindowsForms/2.1.2": {
+      "sha512": "0RXF5bDDjJO8H/ZyE3NrrIDRVD/P9MjhcZ+Z9rlkbanHr8qZQFHn0ffe/GuTJKe8pFLZEzapDzB7wRgyUeaCIQ==",
+      "type": "package",
+      "path": "oxyplot.windowsforms/2.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "OxyPlot_128.png",
+        "lib/net40/OxyPlot.WindowsForms.dll",
+        "lib/net40/OxyPlot.WindowsForms.xml",
+        "lib/net45/OxyPlot.WindowsForms.dll",
+        "lib/net45/OxyPlot.WindowsForms.xml",
+        "lib/netcoreapp3.1/OxyPlot.WindowsForms.dll",
+        "lib/netcoreapp3.1/OxyPlot.WindowsForms.xml",
+        "oxyplot.windowsforms.2.1.2.nupkg.sha512",
+        "oxyplot.windowsforms.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "MathNet.Numerics >= 5.0.0"
+    "net7.0-windows7.0": [
+      "MathNet.Numerics >= 5.0.0",
+      "OxyPlot.Core >= 2.1.2",
+      "OxyPlot.WindowsForms >= 2.1.2"
     ]
   },
   "packageFolders": {
@@ -68,7 +140,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net7.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -76,8 +148,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
           "projectReferences": {}
         }
       },
@@ -88,12 +160,20 @@
       }
     },
     "frameworks": {
-      "net7.0": {
-        "targetAlias": "net7.0",
+      "net7.0-windows7.0": {
+        "targetAlias": "net7.0-windows",
         "dependencies": {
           "MathNet.Numerics": {
             "target": "Package",
             "version": "[5.0.0, )"
+          },
+          "OxyPlot.Core": {
+            "target": "Package",
+            "version": "[2.1.2, )"
+          },
+          "OxyPlot.WindowsForms": {
+            "target": "Package",
+            "version": "[2.1.2, )"
           }
         },
         "imports": [
@@ -110,6 +190,9 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"

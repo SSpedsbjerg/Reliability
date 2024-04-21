@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "O9q2V0ro7Mf9zPhE0GcHzpyzqZGd9P/WbizG0dPRpEVTpj6DqUSrhMVocpWAORbYxzWseKtqNZqBAJU6aS0f/A==",
+  "dgSpecHash": "8QC+l94dFP40OEBqsMgNM93w6mDbqad5GNlb2+eEIuTLTT7H2doI6IhiAXesIjwxKU/GXe+wmu6b+Vmkjo0Gvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\Calculator.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\simon\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512"
+    "C:\\Users\\simon\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
+    "C:\\Users\\simon\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
+    "C:\\Users\\simon\\.nuget\\packages\\oxyplot.windowsforms\\2.1.2\\oxyplot.windowsforms.2.1.2.nupkg.sha512"
   ],
   "logs": []
 }
