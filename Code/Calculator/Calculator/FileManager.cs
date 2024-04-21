@@ -8,13 +8,21 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using System.Globalization;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Calculator {
     class FileManager {
         string line = "";
-        string file = "";
+        public string file = "";
         public FileManager(string file) {
             this.file = file;
+        }
+
+
+    }
+
+    class FaultTreeManager : FileManager {
+        public FaultTreeManager(string file) : base(file) {
         }
 
         private Node GetNodes(XElement element) {
@@ -23,7 +31,8 @@ namespace Calculator {
             double value = 0.0;
             if(element.HasElements) {
                 IEnumerable<XElement> els = element.Elements();
-                foreach(XElement el in els) {;
+                foreach(XElement el in els) {
+                    ;
                     node.AddChildNode(GetNodes(el).SetGateRelation(element.FirstAttribute.Value));
                 }
             }
@@ -54,13 +63,16 @@ namespace Calculator {
                     throw new Exception("MISSING DECLARTION OF GATE IN TOPNODE!");
                 }
                 else {
-                    if(streamReader.GetAttribute(0) == "OR") node.SetGateRelation(GateType.OR);
-                    else if(streamReader.GetAttribute(0) == "AND") node.SetGateRelation(GateType.AND);
-                    else throw new Exception("MISSING DECLARTION OF GATE AFTER TOPNODE!");
+                    if(streamReader.GetAttribute(0) == "OR")
+                        node.SetGateRelation(GateType.OR);
+                    else if(streamReader.GetAttribute(0) == "AND")
+                        node.SetGateRelation(GateType.AND);
+                    else
+                        throw new Exception("MISSING DECLARTION OF GATE AFTER TOPNODE!");
                 }
                 XElement Xml = XElement.Load(streamReader);
                 IEnumerable<XElement> elements = Xml.Elements();
-                foreach (XElement element in elements) {
+                foreach(XElement element in elements) {
                     node.AddChildNode(GetNodes(element));
                 }
                 return new FaultTree(node);
@@ -70,4 +82,13 @@ namespace Calculator {
         }
     }
 
+    class CSVFileManager : FileManager {
+        public CSVFileManager(string file, List<double> values) : base(file) {
+            using (StreamWriter sw = new StreamWriter($"{file}.csv")) {
+            foreach(double value in values) {
+                sw.WriteLine(value);
+                }
+            }
+        }
+    }
 }

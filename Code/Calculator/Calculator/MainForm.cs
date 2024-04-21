@@ -36,7 +36,6 @@ namespace Calculator {
                     .SetCount(count)
                     .SetHighQuartile(highQ)
                     .SetLowerQuartile(lowQ)
-                    .SetMediumQuartile(midQ)
                     .SetStandardDeviation(std)
                     .SetVariance(var);
                 Console.WriteLine("Parsed in values into the normal Distrubtion");

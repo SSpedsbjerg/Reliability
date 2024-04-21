@@ -13,7 +13,6 @@ namespace Calculator {
         IRandomSetGenerator SetStandardDeviation(double std);
         IRandomSetGenerator SetCount(int count);
         IRandomSetGenerator SetLowerQuartile(double lowerQuartile);
-        IRandomSetGenerator SetMediumQuartile(double mediumQuartile);
         IRandomSetGenerator SetHighQuartile(double highQuartile);
         IRandomSetGenerator SetMax(double max);
         IRandomSetGenerator SetMin(double min);
@@ -22,7 +21,6 @@ namespace Calculator {
         double GetVariance();
         double GetStandardDeviation();
         double GetLowerQuartile();
-        double GetMediumQuartile();
         double GetHigherQuartile();
         double GetMax();
         double GetMin();
@@ -36,7 +34,6 @@ namespace Calculator {
         double? standardDeviation;
         int? count;
         double? lowerQuartile;
-        double? mediumQuartile;
         double? highQuartile;
         double? max;
         double? min;
@@ -60,10 +57,6 @@ namespace Calculator {
 
         public IRandomSetGenerator SetMean(double mean) {
             this.mean = mean; return this;
-        }
-
-        public IRandomSetGenerator SetMediumQuartile(double mediumQuartile) {
-            this.mediumQuartile = mediumQuartile; return this;
         }
 
         public IRandomSetGenerator SetMin(double min) {
@@ -98,10 +91,6 @@ namespace Calculator {
             }
             if(lowerQuartile is null) {
                 Console.WriteLine("Lower Quartile is null");
-                nonNull = false;
-            }
-            if(mediumQuartile is null) {
-                Console.WriteLine("Medium Quartile is null");
                 nonNull = false;
             }
             if(highQuartile is null) {
@@ -177,10 +166,6 @@ namespace Calculator {
             return (double)lowerQuartile;
         }
 
-        public double GetMediumQuartile() {
-            return (double)mediumQuartile;
-        }
-
         public double GetHigherQuartile() {
             return (double)highQuartile;
         }
@@ -238,7 +223,7 @@ namespace Calculator {
                 do {
                     sample = normal.Sample();
                     j++;
-                    if(j == 10) break;
+                    if(j == 100) break;
                 } while(sample < GetMin() || sample > GetLowerQuartile());
 
                 dataset.Add(sample);
@@ -250,7 +235,7 @@ namespace Calculator {
                 do {
                     sample = normal.Sample();
                     j++;
-                    if(j == 10) break;
+                    if(j == 100) break;
                 } while(sample < GetLowerQuartile() || sample > GetHigherQuartile());
 
                 dataset.Add(sample);
@@ -262,7 +247,7 @@ namespace Calculator {
                 do {
                     sample = normal.Sample();
                     j++;
-                    if(j == 10) break;//If the loops gets stuck when generating a random value between the quatile and max
+                    if(j == 100) break;//If the loops gets stuck when generating a random value between the quatile and max
                 } while(sample < GetHigherQuartile() || sample > GetMax());
 
                 dataset.Add(sample);
@@ -275,10 +260,10 @@ namespace Calculator {
             return dataset;
         }
 
-        public List<double> GenerateNormalDataset(int count, double mean, double std, double lowerQuartile, double mediumQuartile, double highQuartile, double min, double max) {
+        public List<double> GenerateNormalDataset(int count, double mean, double std, double lowerQuartile, double highQuartile, double min, double max) {
             var normal = new MathNet.Numerics.Distributions.Normal(mean, std);
             List<double> dataset = new List<double>();
-
+            int limit = 999999;
             double percentageLower = 0.25;
             double percentageMedium = 0.5;
             double percentageHigh = 0.25;
@@ -286,12 +271,18 @@ namespace Calculator {
             int lowerCount = (int)(count * percentageLower);
             int mediumCount = (int)(count * percentageMedium);
             int highCount = (int)(count * percentageHigh);
-
             // Generate values for each quartile
             for(int i = 0; i < lowerCount; i++) {
                 double sample;
+                int j = 0;
+
                 do {
                     sample = normal.Sample();
+                    if(dataset.Count == 0)
+                        dataset.Add(sample);
+                    j++;
+                    if(j == limit)
+                        break;//If the loops gets stuck when generating a random value between the quatile and max
                 } while(sample < min || sample > lowerQuartile);
 
                 dataset.Add(sample);
@@ -299,8 +290,12 @@ namespace Calculator {
 
             for(int i = 0; i < mediumCount; i++) {
                 double sample;
+                int j = 0;
                 do {
                     sample = normal.Sample();
+                    j++;
+                    if(j == limit)
+                        break;//If the loops gets stuck when generating a random value between the quatile and max
                 } while(sample < lowerQuartile || sample > highQuartile);
 
                 dataset.Add(sample);
@@ -308,8 +303,12 @@ namespace Calculator {
 
             for(int i = 0; i < highCount; i++) {
                 double sample;
+                int j = 0;
                 do {
                     sample = normal.Sample();
+                    j++;
+                    if(j == limit)
+                        break;//If the loops gets stuck when generating a random value between the quatile and max
                 } while(sample < highQuartile || sample > max);
 
                 dataset.Add(sample);

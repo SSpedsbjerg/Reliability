@@ -201,15 +201,20 @@ namespace Calculator {
             Exponential exponential = new Exponential();
             exponential.print(Cals.Survivor, values);*/
             //Application.EnableVisualStyles();
-            
-            MyApplicationContext context = new MyApplicationContext();
-            
+
             NormalDistrubtion normalDis = new NormalDistrubtion();
-            List<double> normalValues = normalDis.GenerateNormalDataset(691, 116.071744, 29.964951, 110.599998, 128.10, 132.89999, 5.4, 174.69);
+            //List<double> normalValues = normalDis.GenerateNormalDataset(691, 116.071744, 29.964951, 110.599998, 128.10, 132.89999, 5.4, 174.69);
+            //count mean std lower high min max
+            List<double> values = normalDis.GenerateNormalDataset(110, 5086.53, 1000, 2000, 6700, -406.26, 8548.20);
+            Console.WriteLine($"Total Count: { values.Count}");
+
+            _ = new CSVFileManager("Test", values);
             /*Visualizer visualizer = new();
             visualizer.AddSet("1", normalValues.ToArray());
             visualizer.SetPlotName("First Attempt");
             */
+            MyApplicationContext context = new MyApplicationContext();
+
             Application.Run(context);
         }
     }
