@@ -1,6 +1,7 @@
 ﻿using MathNet.Numerics.LinearAlgebra.Factorization;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -186,6 +187,32 @@ namespace Calculator {
         public int? GetSeed() {
             return seed;
         }
+    }
+
+    class ContinuousData : Distrubtion {
+        public ContinuousData() {
+            
+        }
+
+        public List<double> GenerateData() {
+            Random random = new Random();
+            List<double> dataset = new List<double>();
+
+            // Calculate standard deviation from quartiles
+            double stdDev = (GetHigherQuartile() - GetLowerQuartile()) / 1.349; // 1.349 is the approximate value of the interquartile range for a normal distribution
+
+            // Generate dataset by sampling from a normal distribution
+            for(int i = 0; i < GetCount(); i++) {
+                double value;
+                do {
+                    // Sample from a normal distribution within the given range
+                    value = random.NextDouble() * stdDev + GetMean() - (stdDev / 2.0);
+                } while(value < GetMin() || value > GetMax()); // Ensure value is within min and max
+                dataset.Add(value);
+            }
+
+            return dataset;
+        }        
     }
 
     class NormalDistrubtion : Distrubtion, IRandomSetGenerator {

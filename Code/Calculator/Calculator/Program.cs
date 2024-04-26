@@ -203,12 +203,36 @@ namespace Calculator {
             //Application.EnableVisualStyles();
 
             NormalDistrubtion normalDis = new NormalDistrubtion();
-            //List<double> normalValues = normalDis.GenerateNormalDataset(691, 116.071744, 29.964951, 110.599998, 128.10, 132.89999, 5.4, 174.69);
-            //count mean std lower high min max
-            List<double> values = normalDis.GenerateNormalDataset(110, 5086.53, 1000, 2000, 6700, -406.26, 8548.20);
-            Console.WriteLine($"Total Count: { values.Count}");
+            ContinuousData conDis = new ContinuousData();
 
-            _ = new CSVFileManager("Test", values);
+            //List<double> values = normalDis.GenerateNormalDataset(110, 5086.53, 1000, 2000, 6700, -406.26, 8548.20);
+            for(int i = 0; i < 5; i++) {
+                conDis.SetLowerQuartile(200).SetHighQuartile(6700).SetMin(-406.26).SetMax(8548.2).SetMean(5086.53).SetCount(110);
+                List<double> values = conDis.GenerateData();
+                Console.WriteLine($"Total Count: {values.Count}");
+                _ = new CSVFileManager($"Feed_Flow_{i}", values);
+            }
+
+            /*
+            values = normalDis.GenerateNormalDataset(100, 93.33, 20, 20, 100, 6.66, 123.59);
+            Console.WriteLine($"Total Count: {values.Count}");
+
+            _ = new CSVFileManager("Feed_Temp", values);
+
+            values = normalDis.GenerateNormalDataset(107, 116.07, 20, 40, 130, 5.4, 174.69);
+            Console.WriteLine($"Total Count: {values.Count}");
+
+            _ = new CSVFileManager("Bottom_temp", values);
+
+            values = normalDis.GenerateNormalDataset(103, 71.69, 20, 24, 82, 5.83, 104.96);
+            Console.WriteLine($"Total Count: {values.Count}");
+
+            _ = new CSVFileManager("Top_Temp", values);
+
+            values = normalDis.GenerateNormalDataset(108, 70.54, 20, 2000, 85, -0.02, 90.98);
+            Console.WriteLine($"Total Count: {values.Count}");
+
+            _ = new CSVFileManager("Reboiler_flow", values);*/
             /*Visualizer visualizer = new();
             visualizer.AddSet("1", normalValues.ToArray());
             visualizer.SetPlotName("First Attempt");
