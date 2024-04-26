@@ -213,7 +213,7 @@ namespace Calculator {
             for (int i = 0; i < ((requiredDataPercentage / 100) * totalPoints) + 1; i++) {
                 points.Add((double)(range0 + (random.NextDouble() * (range1 - range0))));
             }
-            for (int i = 0; i < totalPoints - ((requiredDataPercentage / 100) * totalPoints) + 1; i++) {
+            for (int i = 0; i <= totalPoints - ((requiredDataPercentage / 100) * totalPoints) + 1; i++) {
                 points.Add((double)(this.GetMin() + (random.NextDouble() * (this.GetMax() - this.GetMin()))));
             }
             Shuffel(points);
@@ -242,15 +242,17 @@ namespace Calculator {
             while (this.GetCount() > values.Count()) {
                 double maxAddition = ((double)range1 / ((double)range0 + (double)range1));
                 try {
-                    values.Add(values.Last() + (random.NextDouble() * ((points[i + 1] - values.Last()))));
+                    values.Add(values.Last() + ((random.NextDouble() -0.2) * ((points[i + 1] - values.Last()))));
                     j++;
-                    if (j >= this.GetCount() / (int)((this.GetCount() / 10) + 1)) {
+                    if (j >= (int)((this.GetCount() / points.Count()))) {
                         i++;
+                        Console.WriteLine($"Total Points: {points.Count()}, Points used: {i}");
                         j = 0;
                         values.Add(points[i]);
                     }
                 }
-                catch(IndexOutOfRangeException) {
+                catch(ArgumentOutOfRangeException) {
+                    Console.WriteLine("Index");
                     return values;
                 }
             }
