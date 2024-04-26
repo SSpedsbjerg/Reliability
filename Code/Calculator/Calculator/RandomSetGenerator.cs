@@ -1,10 +1,4 @@
-﻿using MathNet.Numerics.LinearAlgebra.Factorization;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Calculator {
 
@@ -189,8 +183,84 @@ namespace Calculator {
         }
     }
 
-    class ContinuousData : Distrubtion {
-        public ContinuousData() {
+    class ContinousData : Distrubtion {
+
+        double? range0 = null;
+        double? range1 = null;
+        double requiredDataPercentage = 0;
+
+        public ContinousData() {
+
+        }
+
+        public void SetTargetRange(double value1, double value2) {
+            range0 = value1; range1 = value2;
+        }
+
+        public void voidTargetRange() {
+            range0 = null; range1 = null;
+        }
+
+        public void setRequiredDataPercentage(double value) {
+            requiredDataPercentage = value;
+        }
+
+        private List<double> GenerateTargetPoints() {
+            if(range0 == null || range1 == null) { return null; }
+            List<double> points = new List<double>();
+            Random random = new Random();
+            int totalPoints = (int)((this.GetCount() / 10) + 1);
+            for (int i = 0; i < ((requiredDataPercentage / 100) * totalPoints) + 1; i++) {
+                points.Add((double)(range0 + (random.NextDouble() * (range1 - range0))));
+            }
+            for (int i = 0; i < totalPoints - ((requiredDataPercentage / 100) * totalPoints) + 1; i++) {
+                points.Add((double)(this.GetMin() + (random.NextDouble() * (this.GetMax() - this.GetMin()))));
+            }
+            Shuffel(points);
+            return points;
+        }
+
+        private void Shuffel(List<double> values) {
+            Random random = new Random();
+            int n = values.Count;
+            while(n > 1) {
+                n--;
+                int k = random.Next(n + 1);
+                double value = values[k];
+                values[k] = values[n];
+                values[n] = value;
+            }
+        }
+
+        public List<double> GenerateData() {
+            List<double> points = GenerateTargetPoints();
+            List<double> values = new List<double>();
+            int i = 0;
+            Random random = new Random();
+            values.Add(points[i]);
+            int j = 0;
+            while (this.GetCount() > values.Count()) {
+                double maxAddition = ((double)range1 / ((double)range0 + (double)range1));
+                try {
+                    values.Add(values.Last() + (random.NextDouble() * ((points[i + 1] - values.Last()))));
+                    j++;
+                    if (j >= this.GetCount() / (int)((this.GetCount() / 10) + 1)) {
+                        i++;
+                        j = 0;
+                        values.Add(points[i]);
+                    }
+                }
+                catch(IndexOutOfRangeException) {
+                    return values;
+                }
+            }
+            return values;
+        }
+
+    }
+
+    class RandomData : Distrubtion {
+        public RandomData() {
             
         }
 

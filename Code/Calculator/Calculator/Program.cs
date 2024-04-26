@@ -203,11 +203,13 @@ namespace Calculator {
             //Application.EnableVisualStyles();
 
             NormalDistrubtion normalDis = new NormalDistrubtion();
-            ContinuousData conDis = new ContinuousData();
+            ContinousData conDis = new ContinousData();
 
             //List<double> values = normalDis.GenerateNormalDataset(110, 5086.53, 1000, 2000, 6700, -406.26, 8548.20);
             for(int i = 0; i < 5; i++) {
                 conDis.SetLowerQuartile(200).SetHighQuartile(6700).SetMin(-406.26).SetMax(8548.2).SetMean(5086.53).SetCount(110);
+                conDis.setRequiredDataPercentage(75);
+                conDis.SetTargetRange(6100, 6700);
                 List<double> values = conDis.GenerateData();
                 Console.WriteLine($"Total Count: {values.Count}");
                 _ = new CSVFileManager($"Feed_Flow_{i}", values);
