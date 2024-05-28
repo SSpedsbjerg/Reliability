@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|c:\\users\\simon\\documents\\github\\reliability\\code\\calculator\\calculator\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|solutionrelative:calculator\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|c:\\users\\simon\\documents\\github\\reliability\\code\\calculator\\calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|solutionrelative:calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,8 +11,16 @@
       "RelativeMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|solutionrelative:calculator\\randomsetgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|c:\\users\\simon\\documents\\github\\reliability\\code\\calculator\\calculator\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\calculator\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|solutionrelative:calculator\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\calculator\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|solutionrelative:calculator\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\calculator\\countdistrobution.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7383E2CA-C5D4-48AD-B661-77FF3A425E45}|Calculator\\Calculator.csproj|solutionrelative:calculator\\countdistrobution.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +30,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 256,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CountDistrobution.cs",
+              "DocumentMoniker": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\CountDistrobution.cs",
+              "RelativeDocumentMoniker": "Calculator\\CountDistrobution.cs",
+              "ToolTip": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\CountDistrobution.cs",
+              "RelativeToolTip": "Calculator\\CountDistrobution.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T13:09:16.169Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -38,44 +54,42 @@
               "RelativeToolTip": "Calculator\\MainForm.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-21T09:07:17.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-21T09:07:17.815Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "RandomSetGenerator.cs",
               "DocumentMoniker": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\RandomSetGenerator.cs",
               "RelativeDocumentMoniker": "Calculator\\RandomSetGenerator.cs",
               "ToolTip": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\RandomSetGenerator.cs",
               "RelativeToolTip": "Calculator\\RandomSetGenerator.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkBAAAqAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAALkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-21T08:57:30.543Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "FileManager.cs",
               "DocumentMoniker": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\FileManager.cs",
               "RelativeDocumentMoniker": "Calculator\\FileManager.cs",
               "ToolTip": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\FileManager.cs",
               "RelativeToolTip": "Calculator\\FileManager.cs",
-              "ViewState": "AQIAADIAAAAAAAAAAAAIwEMAAABCAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEMAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-16T08:08:57.452Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-16T08:08:57.452Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\Program.cs",
               "RelativeDocumentMoniker": "Calculator\\Program.cs",
               "ToolTip": "C:\\Users\\simon\\Documents\\GitHub\\Reliability\\Code\\Calculator\\Calculator\\Program.cs",
               "RelativeToolTip": "Calculator\\Program.cs",
-              "ViewState": "AQIAAHMAAAAAAAAAAAAcwLkAAAAFAAAA",
+              "ViewState": "AQIAAKMAAAAAAAAAAAAowM4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-02T09:49:25.529Z",
               "EditorCaption": ""

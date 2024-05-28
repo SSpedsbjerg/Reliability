@@ -207,12 +207,16 @@ namespace Calculator {
 
             //List<double> values = normalDis.GenerateNormalDataset(110, 5086.53, 1000, 2000, 6700, -406.26, 8548.20);
             for(int i = 0; i < 5; i++) {
-                conDis.SetLowerQuartile(200).SetHighQuartile(6700).SetMin(-406.26).SetMax(8548.2).SetMean(5086.53).SetCount(110);
-                conDis.setRequiredDataPercentage(80);
-                conDis.SetTargetRange(6100, 6700);
+                conDis.SetLowerQuartile(0).SetHighQuartile(25).SetMin(-12).SetMax(37).SetMean(15.5f).SetCount(150);
+                conDis.setRequiredDataPercentage(70);
+                conDis.SetTargetRange(9, 21);
                 List<double> values = conDis.GenerateData();
                 Console.WriteLine($"Total Count: {values.Count}");
-                _ = new CSVFileManager($"Feed_Flow_{i}", values);
+                _ = new CSVFileManager($"Tobber_Temp_{i}", values);
+                values = conDis.GenerateData();
+                _ = new CSVFileManager($"Nasifa_Temp_{i}", values);
+                values = conDis.GenerateData();
+                _ = new CSVFileManager($"Simon_Temp_{i}", values);
             }
 
             /*
