@@ -212,11 +212,7 @@ namespace Calculator {
                 conDis.SetTargetRange(9, 21);
                 List<double> values = conDis.GenerateData();
                 Console.WriteLine($"Total Count: {values.Count}");
-                _ = new CSVFileManager($"Tobber_Temp_{i}", values);
-                values = conDis.GenerateData();
-                _ = new CSVFileManager($"Nasifa_Temp_{i}", values);
-                values = conDis.GenerateData();
-                _ = new CSVFileManager($"Simon_Temp_{i}", values);
+                _ = new CSVFileManager($"Data_Temp_{i}", values);
             }
 
             /*
